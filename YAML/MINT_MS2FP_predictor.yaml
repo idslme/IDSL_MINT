@@ -1,0 +1,37 @@
+MINT_MS2FP_predictor:
+## You should try to use identical parameters used in the training step to maximize the performance of the model.
+  MSP:
+  
+    Directory to MSP files: path/to/folder
+    MSP files: LIPIDMSPs_NEG.msp # A string OR a list of msp files in [brackets]
+    Minimum m/z: 50
+    Maximum m/z: 1000
+    Interval m/z: 0.01 # This parameters is also used as a maximum mass deviation parameter
+    Minimum number of peaks: 5
+    Maximum number of peaks: 512
+    Noise removal threshold: 0.01
+    Allowed spectral entropy: True
+    Number processing threads: 35
+    
+
+  Model Parameters:
+    ## Model parameters must be identical to the used parameters in the training step; otherwise, PyTorch cannot load weight parameters.
+    Number of m/z tokens: 95003 # This parameter calculated using: 3 + (Maximum m/z - Minimum m/z)/Interval m/z
+    Dimension of model: 512 # general dimension of the model
+    Embedding norm of m/z tokens: 2
+    Dropout probability of embedded m/z: 0.1
+    Number of total fingerprint bits: 2051 # This number should also include three special tokens dedicated to this workflow. (e.g. 2048 + 3)
+    Maximum number of available fingerprint bits: 200
+    Number of attention heads: 2
+    Number of encoder layers: 4
+    Number of decoder layers: 4
+    Dropout probability of transformer: 0.1
+    Activation function: relu
+    
+    Model address to load weights: path/to/folder/MINT_MS2FP_model.pth
+
+  Prediction Parameters:
+    Directory to store predictions: path/to/folder
+    Device: None
+    Beam size: 3
+    Number processing threads: 35

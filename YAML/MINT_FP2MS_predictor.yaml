@@ -1,0 +1,46 @@
+MINT_FP2MS_predictor:
+
+## Criteria of the .xlsx file with SMILES to generate standard .msp files
+# 1. A column for dash-seperated fingerprints or InChI/SMILES must be stored in separate rows in an .xlsx file
+# 2. .xlsx file must have column headers
+# 3. The header of the fingerprints, SMILES, and InChI columns must be identical to 'FINGERPRINT', 'SMILES', and 'INCHI', respectively.
+# 4. Other columns are also exported in the same MSP block if present
+# 5. A column with header of 'Name' is recommended to be present in the .xlsx file.
+
+  Address to the reference XLXS file: path/to/folder/SMILES_properties.xlsx
+
+  Minimum m/z: 50
+  Maximum m/z: 1000
+  Interval m/z: 0.01 # This parameters is also used as a maximum mass deviation parameter
+  
+  Fingerprints:
+    ## Only one method can be True and other options must be set to False
+    Use fingerprint row entries in the MSP blocks: False # If you have row entries of dash-separated bit location fingerprints in your MSP blocks (e.g. a row entry like --> `Fingerprints: 2-11-20-36-960`)
+    ## Below fingerprint modules require InChI or SMILES column entries be present in the .xlsx spreadsheet
+    MACCS Keys: False
+    MorganFingerprint: True
+    MorganFingerprint parameters:
+      radius: 2
+      nBits: 2048
+      useChirality: False
+  
+  
+  Model Parameters:
+
+    Dimension of model: 512 # general dimension of the model
+    Embedding norm of m/z tokens: 2
+    Number of total fingerprint bits: 2048
+    Number of attention heads: 2
+    Number of encoder layers: 4
+    Number of decoder layers: 4
+    Dropout probability of transformer: 0.1
+    Activation function: relu
+
+    Model address to load weights: path/to/folder/MINT_FP2MS_model.pth
+    Address to the m/z dictionary: path/to/folder/mz_dictionary.pkl
+
+  Prediction Parameters:
+    Directory to store predictions: path/to/folder
+    Device: None
+    Beam size: 3
+    Number processing threads: 35

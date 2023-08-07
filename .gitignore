@@ -1,0 +1,46 @@
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Local development settings
+.idea/
+.vscode/
+*.env
+.env.local
+.env.*.local
+
+# Dependencies
+venv/
+env/
+lib/
+include/
+bin/
+pip-selfcheck.json
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Other
+.DS_Store
+*.log
+*.sqlite3
+*.pyc
+
+__pycache__/
+*.pyc
+*$py.class
+*.idea
+*.DS_Store
+*.vscode
+*.csv
+*.pt
+*.json
+*.pyo
+*.egg-info/
+dist/
+build/

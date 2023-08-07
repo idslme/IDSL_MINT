@@ -1,0 +1,59 @@
+MINT_MS2SMILES_trainer:
+
+  MSP Pickling:
+    
+    Perform MSP pickling: True
+    Directory to store deconvoluted PKL file: path/to/folder
+    Directory to MSP files: path/to/folder
+    MSP files: LIPIDMSPs_NEG.msp # A string OR a list of msp files in [brackets]
+    Minimum m/z: 50
+    Maximum m/z: 1000
+    Interval m/z: 0.01 # This parameters is also used as a maximum mass deviation parameter
+    Minimum number of peaks: 5
+    Maximum number of peaks: 512
+    Noise removal threshold: 0.01
+    Allowed spectral entropy: True
+    Maximum length of SMILES characters: 200
+    Number processing threads: 35
+    
+
+  Model Parameters:
+
+    Number of m/z tokens: 95003 # This parameter calculated using: 3 + (Maximum m/z - Minimum m/z)/Interval m/z
+    Dimension of model: 512 # general dimension of the model
+    Embedding norm of m/z tokens: 2
+    Dropout probability of embedded m/z: 0.1
+    Maximum length of SMILES characters: 200 # The same as line 16
+    Embedding norm of SMILES: 2
+    Embedding norm of SMILES sequence: 2
+    Dropout probability of embedded SMILES sequence: 0.1
+    Number of attention heads: 2
+    Number of encoder layers: 4
+    Number of decoder layers: 4
+    Dropout probability of transformer: 0.1
+    Activation function: relu
+
+  Training Parameters:
+
+    Reset model weights: True
+    ## Provide model address to further train an exisitng mdoel (transfer learning), and select `False` for `Reset model weights`
+    Model address to train: path/to/folder/MINT_MS2SMILES_model.pth
+    
+    Directory to store the trained model: path/to/folder
+    Directory to load deconvoluted PKL file: path/to/folder # The same as line 6
+    Device: None
+
+    Cross entropy LOSS function:
+      Label smoothing: 0.1
+
+    Adam optimizer function:
+      Learning rate: 1e-5
+      Beta1: 0.9
+      Beta2: 0.98
+      Epsilon: 1e-09
+    
+    Maximum number of epochs: 300
+    Maximum number of ions per training step: 2000
+    Split ratio between training and validation sets: [0.80, 0.20]
+    Random state: 67
+    Number processing threads: 35
