@@ -17,21 +17,22 @@
 
     b. Install [RDKit](https://www.rdkit.org/docs/Install.html).
 
-2. Download the **IDSL_MINT** package from this Github repository:
+2. Install the package:
 
-    `wget https://github.com/idslme/IDSL_MINT/blob/main/package/releases/IDSL_MINT-1.0.0.whl`
-
-3. Install the package:
-
-	3.1. try `pip`
+	2.1. try `pip`
  
-	`pip install IDSL_MINT-1.0.0.whl`
+	`pip install git+https://github.com/idslme/IDSL_MINT`
+	`pip install IDSL_MINT`
     
-	3.2. or `conda`
+	2.2. or `conda`
 
-	`conda install IDSL_MINT-1.0.0.whl`
+	`git clone https://github.com/idslme/IDSL_MINT.git`
+	`cd IDSL_MINT`
+	`conda env create -f environment.yml`
+	`conda activate IDSL_MINT`
+	`pip install -e .`
 
-4. Update the Python PATH:
+3. Update the Python PATH:
 
 	`export PATH="root/.local/bin:$PATH"` --> root directory should be your system root directory.
 

@@ -1,3 +1,0 @@
-[console_scripts]
-MINT_workflow = IDSL_MINT.IDSL_MINT_workflow:MINT_workflow
-

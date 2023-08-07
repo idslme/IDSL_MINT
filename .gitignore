@@ -1,3 +1,8 @@
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
@@ -19,6 +24,7 @@ pip-selfcheck.json
 
 # Jupyter Notebook
 .ipynb_checkpoints/
+*.ipynb
 
 # Other
 .DS_Store
@@ -36,3 +42,6 @@ __pycache__/
 *.pt
 *.json
 *.pyo
+*.egg-info/
+dist/
+build/
