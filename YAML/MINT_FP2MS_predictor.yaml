@@ -34,13 +34,13 @@ MINT_FP2MS_predictor:
     Number of encoder layers: 4
     Number of decoder layers: 4
     Dropout probability of transformer: 0.1
-    Activation function: relu
+    Activation function: relu # relu OR glue
 
     Model address to load weights: path/to/folder/MINT_FP2MS_model.pth
     Address to the m/z dictionary: path/to/folder/mz_dictionary.pkl
 
   Prediction Parameters:
     Directory to store predictions: path/to/folder
-    Device: None
+    Device: None # cuda OR cpu. When None, it automatically finds the processing device.
     Beam size: 3
     Number processing threads: 35

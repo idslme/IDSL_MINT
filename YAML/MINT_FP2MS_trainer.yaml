@@ -40,7 +40,7 @@ MINT_FP2MS_trainer:
     Number of encoder layers: 4
     Number of decoder layers: 4
     Dropout probability of transformer: 0.1
-    Activation function: relu
+    Activation function: relu # relu OR glue
 
   Training Parameters:
 
@@ -50,7 +50,7 @@ MINT_FP2MS_trainer:
     
     Directory to store the trained model: path/to/folder
     Directory to load deconvoluted PKL file: path/to/folder # The same as line 6
-    Device: None
+    Device: None # cuda OR cpu. When None, it automatically finds the processing device.
 
     Cross entropy LOSS function:
       Label smoothing: 0.1
