@@ -19,18 +19,18 @@
 
 2. Install the package:
 
-	2.1. try `pip`
- 
-	`pip install git+https://github.com/idslme/IDSL_MINT`
-	`pip install IDSL_MINT`
+	2.1. Option 1: `pip`
+	
+	- `pip install git+https://github.com/idslme/IDSL_MINT`
+	- `pip install IDSL_MINT`
     
-	2.2. or `conda`
+	2.2. Option 2: `conda`
 
-	`git clone https://github.com/idslme/IDSL_MINT.git`
-	`cd IDSL_MINT`
-	`conda env create -f environment.yml`
-	`conda activate IDSL_MINT`
-	`pip install -e .`
+	- `git clone https://github.com/idslme/IDSL_MINT.git`
+	- `cd IDSL_MINT`
+	- `conda env create -f environment.yml`
+	- `conda activate IDSL_MINT`
+	- `pip install -e .`
 
 3. Update the Python PATH:
 
