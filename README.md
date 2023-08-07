@@ -38,7 +38,7 @@
 
 
 # Workflow
-The **IDSL_MINT** framework encapsulates three transformative approaches to deeply interpret mass spectrometry data. Each of these methodologies can be effectively managed using designated model configuration `yaml` files. In the training step, weights of **IDS_MINT** models are stored and updated in a designated directory on the decreasing trajectory of the training loss value to ensure optimal performance and accuracy. The [`yaml`](https://github.com/idslme/IDSL_MINT/tree/main/package/YAML) files are easy to update and model configuration is significantly simplified and commented. After configuring the model in the designated `yaml` file, run the below bash command to perform calculations. The **IDSL_MINT** package can automatically detect types of `yaml` file to run training or inference operations.
+The **IDSL_MINT** framework encapsulates three transformative approaches to deeply interpret mass spectrometry data. Each of these methodologies can be effectively managed using designated model configuration `yaml` files. In the training step, weights of **IDS_MINT** models are stored and updated in a designated directory on the decreasing trajectory of the training loss value to ensure optimal performance and accuracy. The [`yaml`](https://github.com/idslme/IDSL_MINT/tree/main/YAML) files are easy to update and model configuration is significantly simplified and commented. After configuring the model in the designated `yaml` file, run the below bash command to perform calculations. The **IDSL_MINT** package can automatically detect types of `yaml` file to run training or inference operations.
 
     MINT_workflow --yaml /path/to/yaml/file
 
@@ -86,19 +86,19 @@ The **IDSL_MINT** framework encapsulates three transformative approaches to deep
 
 `Fingerprint` row entries may be in any line in MSP blocks between `Name` and `Num Peaks` rows, and fingerprint bits must be dash-separated. This example represented Avalon fingerprint bits with `nBits = 4096` for Aspirin MS/MS spectra.
 
-To train an **IDSL_MINT** model with molecular fingerprints, download and fill a [MINT_MS2FP_trainer.yaml](https://github.com/idslme/IDSL_MINT/blob/main/package/YAML/MINT_MS2FP_trainer.yaml) file. Similarly, for model prediction, use [MINT_MS2FP_predictor.yaml](https://github.com/idslme/IDSL_MINT/blob/main/package/YAML/MINT_MS2FP_predictor.yaml) file.
+To train an **IDSL_MINT** model with molecular fingerprints, download and fill a [MINT_MS2FP_trainer.yaml](https://github.com/idslme/IDSL_MINT/tree/main/YAML/MINT_MS2FP_trainer.yaml) file. Similarly, for model prediction, use [MINT_MS2FP_predictor.yaml](https://github.com/idslme/IDSL_MINT/tree/main/YAML/MINT_MS2FP_predictor.yaml) file.
 
 ## IDSL_MINT: Translating MS/MS Spectra into Canonical SMILES
 
 In this approach, InChI and SMILES row entries in the MSP blocks are converted into canonical SMILES using [RDKit](https://www.rdkit.org). Next, standard canonical SMILES are tokenized using a method similar to [RXNFP](https://rxn4chemistry.github.io/rxnfp). As long as InChI and SMILES row entries present in the MSP blocks are available, this approach may be used to train an **IDSL_MINT** model.
 
-To train an **IDSL_MINT** model to predict molecular structures from MS/MS spectra, download and fill a [MINT_MS2SMILES_trainer.yaml](https://github.com/idslme/IDSL_MINT/blob/main/package/YAML/MINT_MS2SMILES_trainer.yaml) file. Likewise, for model prediction, use [MINT_MS2SMILES_predictor.yaml](https://github.com/idslme/IDSL_MINT/blob/main/package/YAML/MINT_MS2SMILES_predictor.yaml) file.
+To train an **IDSL_MINT** model to predict molecular structures from MS/MS spectra, download and fill a [MINT_MS2SMILES_trainer.yaml](https://github.com/idslme/IDSL_MINT/tree/main/YAML/MINT_MS2SMILES_trainer.yaml) file. Likewise, for model prediction, use [MINT_MS2SMILES_predictor.yaml](https://github.com/idslme/IDSL_MINT/tree/main/YAML/MINT_MS2SMILES_predictor.yaml) file.
 
 ## IDSL_MINT: Transforming Fingerprints into MS/MS Fragments
 
 This method is designed to translate fingerprints into MS/MS fragments using a transformer model. This approach contrasts with previous methods that predict fragment mass from fingerprints. 
 
-To train an **IDSL_MINT** model to predict MS/MS spectra from molecular structures, download and fill a [MINT_FP2MS_trainer.yaml](https://github.com/idslme/IDSL_MINT/blob/main/package/YAML/MINT_FP2MS_trainer.yaml) file. Likewise, for model prediction, use [MINT_FP2MS_predictor.yaml](https://github.com/idslme/IDSL_MINT/blob/main/package/YAML/MINT_FP2MS_predictor.yaml) file.
+To train an **IDSL_MINT** model to predict MS/MS spectra from molecular structures, download and fill a [MINT_FP2MS_trainer.yaml](https://github.com/idslme/IDSL_MINT/tree/main/YAML/MINT_FP2MS_trainer.yaml) file. Likewise, for model prediction, use [MINT_FP2MS_predictor.yaml](https://github.com/idslme/IDSL_MINT/tree/main/YAML/MINT_FP2MS_predictor.yaml) file.
 
 # Citation
 Pending ...
