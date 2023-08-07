@@ -14,9 +14,9 @@ setup(
     description = 'MS/MS interpretation by ensemble of deep learning models',
     long_description = long_description,
     long_description_content_type = 'text/markdown',
-    url = 'https://github.com/IDSL_MINT/IDSL_MINT',
+    url = 'https://github.com/idslme/IDSL_MINT',
     project_urls = {
-        'Source': 'https://github.com/IDSL_MINT/IDSL_MINT'
+        'Source': 'https://github.com/idslme/IDSL_MINT'
     },
     license = 'MIT',
     packages = find_packages(),
