@@ -25,7 +25,7 @@ setup(
             ['MINT_workflow=IDSL_MINT.IDSL_MINT_workflow:MINT_workflow']
     },
     install_requires = [
-	    'rdkit',
+	'rdkit',
         'pathlib>=1.0.1',
         'matplotlib>=3.1.3',
         'numpy>=1.18.1',

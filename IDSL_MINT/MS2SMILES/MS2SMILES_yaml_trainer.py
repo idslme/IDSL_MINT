@@ -115,12 +115,10 @@ def MS2SMILES_yaml_trainer(yaml_file):
     if isinstance(device, str):
         device = device.lower()
         if device.__eq__("none"):
-            device = string_dict.get(device)
+            device = None
         elif not (device.__eq__("cpu") or device.__eq__("cuda")):
             raise RuntimeError("Incorrect device type! Select None to automatically detect the processing device!")
-    
-    if device is None:
-        device = 'cpu'
+
 
     CrossEntropyLOSSfunction = Training_Parameters['Cross entropy LOSS function']
     label_smoothing = float(CrossEntropyLOSSfunction['Label smoothing'])

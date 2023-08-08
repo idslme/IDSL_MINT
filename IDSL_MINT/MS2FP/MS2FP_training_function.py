@@ -46,8 +46,8 @@ def train_step(model: torch.nn.Module,
             INT = INT[permutation]
             FingerPrint = FingerPrint[permutation]
         
-        input_finger_print = FingerPrint[:, :-1]
-        target_finger_print = FingerPrint[:, 1:]
+        input_finger_print = FingerPrint[:, :-1].to(device)
+        target_finger_print = FingerPrint[:, 1:].to(device)
 
         optimizer.zero_grad()
         
@@ -104,8 +104,8 @@ def test_step(model: torch.nn.Module,
             
             n_msp_batch = FingerPrint.shape[0]
 
-            input_finger_print = FingerPrint[:, :-1]
-            target_finger_print = FingerPrint[:, 1:]
+            input_finger_print = FingerPrint[:, :-1].to(device)
+            target_finger_print = FingerPrint[:, 1:].to(device)
             
             predicted_finger_print = model(MZ_Tokens, INT, input_finger_print, nBitsKeyPaddingMask)
 
@@ -155,7 +155,6 @@ def MS2FP_train(model: torch.nn.Module,
     if device is None:
         if torch.cuda.is_available():
             device = 'cuda'
-            model.to(device)
         else:
             device = 'cpu'
     
@@ -165,6 +164,7 @@ def MS2FP_train(model: torch.nn.Module,
     else:
         # To compile the model in torch versions >= 2.0.0 for faster training
         try:
+            model.to(device)
             torch._dynamo.config.suppress_errors = True
             model = torch.compile(model)
             torch.autograd.set_detect_anomaly(True)

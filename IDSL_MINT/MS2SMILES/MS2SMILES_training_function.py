@@ -47,8 +47,8 @@ def train_step(model: torch.nn.Module,
             seqSMILESpaddingMask = seqSMILESpaddingMask[permutation]
         
         
-        inputSeqSMILES = seqSMILES[:, :-1]
-        targetSeqSMILES = seqSMILES[:, 1:]
+        inputSeqSMILES = seqSMILES[:, :-1].to(device)
+        targetSeqSMILES = seqSMILES[:, 1:].to(device)
 
         optimizer.zero_grad()
         
@@ -103,8 +103,8 @@ def test_step(model: torch.nn.Module,
             
             n_msp_batch = MZ_Tokens.shape[0]
 
-            inputSeqSMILES = seqSMILES[:, :-1]
-            targetSeqSMILES = seqSMILES[:, 1:]
+            inputSeqSMILES = seqSMILES[:, :-1].to(device)
+            targetSeqSMILES = seqSMILES[:, 1:].to(device)
             
             predictedSeqSMILES = model(MZ_Tokens, INT, inputSeqSMILES, seqSMILESpaddingMask)
 
@@ -155,7 +155,6 @@ def MS2SMILES_train(model: torch.nn.Module,
     if device is None:
         if torch.cuda.is_available():
             device = 'cuda'
-            model.to(device)
         else:
             device = 'cpu'
     
@@ -165,6 +164,7 @@ def MS2SMILES_train(model: torch.nn.Module,
     else:
         # To compile the model in torch versions >= 2.0.0 for faster training
         try:
+            model.to(device)
             torch._dynamo.config.suppress_errors = True
             model = torch.compile(model)
             torch.autograd.set_detect_anomaly(True)
