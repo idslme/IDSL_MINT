@@ -40,10 +40,9 @@ class FP2MS_Model(nn.Module):
     
     def beam_search_inference(self, arg):
 
+        FP_Tokens_vector = arg[0]
+        beam_size = arg[1]
         device = arg[2]
-        FP_Tokens_vector = arg[0].to(device)
-        beam_size = arg[1].to(device)
-        
 
         FP_Tokens_vector = torch.tensor(FP_Tokens_vector, dtype = torch.int).unsqueeze(dim = 0).to(device)
 

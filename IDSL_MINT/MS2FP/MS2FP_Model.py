@@ -60,11 +60,11 @@ class MS2FP_Model(nn.Module):
     
     def beam_search_inference(self, arg):
 
+        MZ_Tokens_vector = arg[0]
+        INT_vector = arg[1]
+        beam_size = arg[2]
         device = arg[3]
-        MZ_Tokens_vector = arg[0].to(device)
-        INT_vector = arg[1].to(device)
-        beam_size = arg[2].to(device)
-        msp_block_name = arg[4].to(device)
+        msp_block_name = arg[4]
 
         MZ_Tokens_vector = torch.tensor(MZ_Tokens_vector, dtype = torch.int).unsqueeze(dim = 0).to(device)
         INT_vector = torch.tensor(INT_vector, dtype = torch.float32).unsqueeze(dim = 0).unsqueeze(dim = 2).to(device)
