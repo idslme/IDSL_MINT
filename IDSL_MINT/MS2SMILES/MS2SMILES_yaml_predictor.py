@@ -52,13 +52,18 @@ def MS2SMILES_yaml_predictor(yaml_file):
     if isinstance(device, str):
         device = device.lower()
         if device.__eq__("none"):
-            device = string_dict.get(device)
+            device = None
         elif not (device.__eq__("cpu") or device.__eq__("cuda")):
             raise RuntimeError("Incorrect device type! Select None to automatically detect the processing device!")
     
+    # To develop a device agnostic training loop
     if device is None:
-        device = 'cpu'
+        if torch.cuda.is_available():
+            device = 'cuda'
+        else:
+            device = 'cpu'
     
+
     beam_size = int(Prediction_Parameters['Beam size'])
 
     logMINT = f"{output_directory}/logMINT_MS2SMILES_prediction.txt"
