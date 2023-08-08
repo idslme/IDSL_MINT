@@ -177,7 +177,8 @@ def FP2MS_yaml_predictor(yaml_file):
             beam_search_tuple.append(search_tuple)
         P.close()
     
-    MINT_logRecorder("\nLoading model weights!", logMINT = logMINT, allowedPrinting = True)
+    MINT_logRecorder(f"\nDevice: {device}\n", logMINT = logMINT, allowedPrinting = True)
+    MINT_logRecorder("\nLoading model weights!\n", logMINT = logMINT, allowedPrinting = True)
 
     D_MODEL = int(Model_Parameters['Dimension of model'])
     MZ_EMBED_MAX_NORM = float(Model_Parameters['Embedding norm of m/z tokens'])

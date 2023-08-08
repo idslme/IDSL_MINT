@@ -106,7 +106,8 @@ def MS2FP_yaml_predictor(yaml_file):
         del deconvoluted_msp
         
             
-        MINT_logRecorder("\nLoading model weights!", logMINT = logMINT, allowedPrinting = True)
+        MINT_logRecorder(f"\nDevice: {device}\n", logMINT = logMINT, allowedPrinting = True)
+        MINT_logRecorder("\nLoading model weights!\n", logMINT = logMINT, allowedPrinting = True)
         Model_Parameters = yaml_data['Model Parameters']
 
         NUM_MZ_VOCABS = int(Model_Parameters['Number of m/z tokens'])
