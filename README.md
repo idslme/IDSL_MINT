@@ -38,7 +38,7 @@
 
 
 # Workflow
-The **IDSL_MINT** framework encapsulates three transformative approaches to deeply interpret mass spectrometry data. Each of these methodologies can be effectively managed using designated model configuration `yaml` files. In the training step, weights of **IDS_MINT** models are stored and updated in a designated directory on the decreasing trajectory of the training loss value to ensure optimal performance and accuracy. The [`yaml`](https://github.com/idslme/IDSL_MINT/tree/main/YAML) files are easy to update and model configuration is significantly simplified and commented. After configuring the model in the designated `yaml` file, run the below bash command to perform calculations. The **IDSL_MINT** package can automatically detect types of `yaml` file to run training or inference operations.
+The **IDSL_MINT** framework encapsulates three transformative approaches to deeply interpret mass spectrometry data. Each of these methodologies can be effectively managed using designated model configuration `yaml` files. In the training step, weights of **IDSL_MINT** models are stored and updated in a designated directory on the decreasing trajectory of the training loss value to ensure optimal performance and accuracy. The [`yaml`](https://github.com/idslme/IDSL_MINT/tree/main/YAML) files are easy to update and model configuration is significantly simplified and commented. After configuring the model in the designated `yaml` file, run the below bash command to perform calculations. The **IDSL_MINT** package can automatically detect types of `yaml` file to run training or inference operations.
 
     MINT_workflow --yaml /path/to/yaml/file
 
