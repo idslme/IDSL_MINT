@@ -45,7 +45,7 @@ def MS2FP_yaml_predictor(yaml_file):
     
     Prediction_Parameters = yaml_data['Prediction Parameters']
     output_directory = Prediction_Parameters['Directory to store predictions']
-    output_directory = MINT_address_check(output_directory, address_check = True)
+    output_directory = MINT_address_check(output_directory, address_check = False)
     os.makedirs(output_directory, exist_ok = True)
 
     device = Prediction_Parameters['Device']
