@@ -40,9 +40,10 @@ class FP2MS_Model(nn.Module):
     
     def beam_search_inference(self, arg):
 
-        FP_Tokens_vector = arg[0]
-        beam_size = arg[1]
         device = arg[2]
+        FP_Tokens_vector = arg[0].to(device)
+        beam_size = arg[1].to(device)
+        
 
         FP_Tokens_vector = torch.tensor(FP_Tokens_vector, dtype = torch.int).unsqueeze(dim = 0).to(device)
 
@@ -84,10 +85,10 @@ class FP2MS_Model(nn.Module):
 
             new_FP_tokens = []
             for b in range(beam_size):
-                new_FP_tokens.append(torch.cat((beams["MZ_tokens"][index_FP_tokens[b]], Indices[b].view(-1, 1)), dim = 1).type(torch.int))
+                new_FP_tokens.append(torch.cat((beams["MZ_tokens"][index_FP_tokens[b]], Indices[b].view(-1, 1).to('cpu')), dim = 1).type(torch.int))
 
             beams["MZ_tokens"] = new_FP_tokens
-            beams["Scores"] = indScores
+            beams["Scores"] = indScores.to('cpu')
 
         
         FP_tokens = beams["MZ_tokens"][0]

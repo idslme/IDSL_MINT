@@ -88,17 +88,17 @@ class MS2SMILES_Model(nn.Module):
     
     def beam_search_inference(self, arg):
 
-        MZ_Tokens_vector = arg[0]
-        INT_vector = arg[1]
-        beam_size = arg[2]
         device = arg[3]
-        msp_block_name = arg[4]
+        MZ_Tokens_vector = arg[0].to(device)
+        INT_vector = arg[1].to(device)
+        beam_size = arg[2].to(device)
+        msp_block_name = arg[4].to(device)
 
         MZ_Tokens_vector = torch.tensor(MZ_Tokens_vector, dtype = torch.int).unsqueeze(dim = 0).to(device)
         INT_vector = torch.tensor(INT_vector, dtype = torch.float32).unsqueeze(dim = 0).unsqueeze(dim = 2).to(device)
 
-        seqSMILESpadded = torch.zeros(size = (1, (self.max_SMILES_sequence_length - 1)))  # 0 is the token number for padding
-        seqSMILES = torch.cat((torch.tensor([[1]]), seqSMILESpadded), dim = 1)
+        seqSMILESpadded = torch.zeros(size = (1, (self.max_SMILES_sequence_length - 1))).to(device)  # 0 is the token number for padding
+        seqSMILES = torch.cat((torch.tensor([[1]]), seqSMILESpadded), dim = 1).to(device)
         with torch.inference_mode():
             logits = self.forward(MZ_Tokens_vector, INT_vector, (seqSMILES).type(torch.int).to(device))
 
@@ -124,8 +124,8 @@ class MS2SMILES_Model(nn.Module):
                     
                     decoding_depth = seqSMILES.shape[1]
 
-                    seqSMILESpadded = torch.zeros(size = (1, (self.max_SMILES_sequence_length - decoding_depth))) # 0 is the token number for padding
-                    seqSMILES = torch.cat((seqSMILES, seqSMILESpadded), dim = 1)
+                    seqSMILESpadded = torch.zeros(size = (1, (self.max_SMILES_sequence_length - decoding_depth))).to(device) # 0 is the token number for padding
+                    seqSMILES = torch.cat((seqSMILES, seqSMILESpadded), dim = 1).to(device)
                     with torch.inference_mode():
                         logits = self.forward(MZ_Tokens_vector, INT_vector, seqSMILES.type(torch.int).to(device))
 
@@ -151,18 +151,18 @@ class MS2SMILES_Model(nn.Module):
             for b in range(beam_size):
 
                 if beams["seqSMILES_Tokens"][b][0, -1].item() != 2:
-                    new_SMILES_token.append(torch.cat((beams["seqSMILES_Tokens"][index_SMILES_token[b]], Indices[b].view(-1, 1)), dim = 1).type(torch.int))
+                    new_SMILES_token.append(torch.cat((beams["seqSMILES_Tokens"][index_SMILES_token[b]], Indices[b].view(-1, 1).to('cpu')), dim = 1).type(torch.int))
                 else:
                     new_SMILES_token.append(beams["seqSMILES_Tokens"][index_SMILES_token[b]])
 
             beams["seqSMILES_Tokens"] = new_SMILES_token
-            beams["Scores"] = indScores
+            beams["Scores"] = indScores.to('cpu')
 
-        Scores = (torch.softmax(beams["Scores"], dim = -1).numpy()*100).tolist()
+        Scores = (torch.softmax(beams["Scores"], dim = -1).detach().numpy()*100).tolist()
 
         SMILES = []
         for smiles_tokens in beams["seqSMILES_Tokens"]:
-            SMILES.append(SMILER(smiles_tokens.squeeze(dim = 0).numpy()))
+            SMILES.append(SMILER(smiles_tokens.squeeze(dim = 0).detach().numpy()))
         
         
         return msp_block_name, Scores, SMILES

@@ -60,11 +60,11 @@ class MS2FP_Model(nn.Module):
     
     def beam_search_inference(self, arg):
 
-        MZ_Tokens_vector = arg[0]
-        INT_vector = arg[1]
-        beam_size = arg[2]
         device = arg[3]
-        msp_block_name = arg[4]
+        MZ_Tokens_vector = arg[0].to(device)
+        INT_vector = arg[1].to(device)
+        beam_size = arg[2].to(device)
+        msp_block_name = arg[4].to(device)
 
         MZ_Tokens_vector = torch.tensor(MZ_Tokens_vector, dtype = torch.int).unsqueeze(dim = 0).to(device)
         INT_vector = torch.tensor(INT_vector, dtype = torch.float32).unsqueeze(dim = 0).unsqueeze(dim = 2).to(device)
@@ -107,14 +107,14 @@ class MS2FP_Model(nn.Module):
 
             new_FP_tokens = []
             for b in range(beam_size):
-                new_FP_tokens.append(torch.cat((beams["FP_tokens"][index_FP_tokens[b]], Indices[b].view(-1, 1)), dim = 1).type(torch.int))
+                new_FP_tokens.append(torch.cat((beams["FP_tokens"][index_FP_tokens[b]], Indices[b].view(-1, 1).to('cpu')), dim = 1).type(torch.int))
 
             beams["FP_tokens"] = new_FP_tokens
-            beams["Scores"] = indScores
+            beams["Scores"] = indScores.to('cpu')
 
         
         FP_tokens = beams["FP_tokens"][0]
-        FP_tokens = (FP_tokens[~torch.isin(FP_tokens, torch.tensor([0, 1, 2]))].unique().numpy() - 3).tolist()
+        FP_tokens = (FP_tokens[~torch.isin(FP_tokens, torch.tensor([0, 1, 2]))].unique().detach().numpy() - 3).tolist()
         output = [msp_block_name, "-".join([str(q) for q in FP_tokens])]
 
         return output
