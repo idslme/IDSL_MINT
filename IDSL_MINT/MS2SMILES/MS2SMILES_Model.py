@@ -44,10 +44,12 @@ class MS2SMILES_Model(nn.Module):
         
         z = self.mzTokenEmbedding(MZ_Tokens)*torch.sqrt(self.D_model) # each m/z has d (=512) features (embeddings)
 
-        idx2i = torch.arange(0, self.D_model, 2)
-        idx1i = torch.arange(1, self.D_model, 2)
+        device = z.device
 
-        zPosEnc = torch.zeros_like(z)
+        idx2i = torch.arange(0, self.D_model, 2).to(device)
+        idx1i = torch.arange(1, self.D_model, 2).to(device)
+
+        zPosEnc = torch.zeros_like(z).to(device)
 
         zPosEnc[:, :, idx2i] = torch.sin(idx2i*INT/(10000**(2*idx2i/self.D_model)))
         zPosEnc[:, :, idx1i] = torch.cos(idx1i*INT/(10000**(2*idx1i/self.D_model)))
