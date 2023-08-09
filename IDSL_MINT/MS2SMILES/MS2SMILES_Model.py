@@ -62,8 +62,10 @@ class MS2SMILES_Model(nn.Module):
         
         z = self.seqSMILESembedding(seqSMILES_Tokens) # each m/z has d (=512) features (embeddings)
 
-        zPosEmb = torch.stack([torch.arange(0, self.max_SMILES_sequence_length, 1) + 1] * seqSMILES_Tokens.shape[0])
-        z_0 = torch.where(seqSMILES_Tokens == 0, torch.tensor(True), torch.tensor(False))
+        device = z.device
+
+        zPosEmb = torch.stack([torch.arange(0, self.max_SMILES_sequence_length, 1) + 1] * seqSMILES_Tokens.shape[0]).to(device)
+        z_0 = torch.where(seqSMILES_Tokens == 0, torch.tensor(True), torch.tensor(False)).to(device)
         zPosEmb[z_0] = 0
 
         zPosEmb = self.seqSMILESpositionalEmbedding(zPosEmb)
