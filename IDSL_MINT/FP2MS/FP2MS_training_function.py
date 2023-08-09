@@ -209,7 +209,7 @@ def FP2MS_train(model: torch.nn.Module,
     MINT_logRecorder(f"Maximum number of ions per batch: {max_number_ions_per_batch}", logMINT = logMINT, allowedPrinting = True)
     MINT_logRecorder(f"Random state: {random_state}", logMINT = logMINT, allowedPrinting = True)
     if device.__eq__("cpu"):
-        MINT_logRecorder(f"Number processing threads: {number_processing_threads}", logMINT = logMINT, allowedPrinting = True)
+        MINT_logRecorder(f"Number of CPU processing threads: {number_processing_threads}", logMINT = logMINT, allowedPrinting = True)
 
     MINT_logRecorder(f"\nInitiated training!", logMINT = logMINT, allowedPrinting = True)
 

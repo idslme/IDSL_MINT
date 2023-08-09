@@ -42,7 +42,7 @@ def MS2SMILES_yaml_trainer(yaml_file):
             allowedSpectralEntropy = string_dict.get(allowedSpectralEntropy.lower())
         
         MAX_SMILES_sequence_length = int(yaml_MSP_pickling['Maximum length of SMILES characters'])
-        number_processing_threads = int(yaml_MSP_pickling['Number processing threads'])
+        number_processing_threads = int(yaml_MSP_pickling['Number of CPU processing threads'])
 
         MS2SMILES_msp_pickler(pkl_deconvoluted_msp_directory,
                                 msp_file_directory,
@@ -132,7 +132,7 @@ def MS2SMILES_yaml_trainer(yaml_file):
     max_number_ions_per_batch = int(Training_Parameters['Maximum number of ions per training step'])
     split_ratio = Training_Parameters['Split ratio between training and validation sets']
     random_state = int(Training_Parameters['Random state'])
-    number_processing_threads = int(Training_Parameters['Number processing threads'])
+    number_processing_threads = int(Training_Parameters['Number of CPU processing threads'])
 
     MS2SMILES_train(model,
                     device,

@@ -95,7 +95,7 @@ def FP2MS_yaml_predictor(yaml_file):
 
     beam_size = int(Prediction_Parameters['Beam size'])
 
-    number_processing_threads = int(Prediction_Parameters['Number processing threads'])
+    number_processing_threads = int(Prediction_Parameters['Number of CPU processing threads'])
 
     logMINT = f"{output_directory}/logMINT_FP2MS_prediction.txt"
     MINT_logRecorder("=".join(["" for _ in range(100)]), logMINT = logMINT, allowedPrinting = True)

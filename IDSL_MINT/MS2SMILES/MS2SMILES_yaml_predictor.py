@@ -41,7 +41,7 @@ def MS2SMILES_yaml_predictor(yaml_file):
     if isinstance(allowedSpectralEntropy, str):
         allowedSpectralEntropy = string_dict.get(allowedSpectralEntropy.lower())
     
-    number_processing_threads = int(yaml_MSP_pickling['Number processing threads'])
+    number_processing_threads = int(yaml_MSP_pickling['Number of CPU processing threads'])
     
     Prediction_Parameters = yaml_data['Prediction Parameters']
     output_directory = Prediction_Parameters['Directory to store predictions']
@@ -157,7 +157,7 @@ def MS2SMILES_yaml_predictor(yaml_file):
 
         MINT_logRecorder("Initiated model prediction!", logMINT = logMINT, allowedPrinting = True)
 
-        number_processing_threads = int(Prediction_Parameters['Number processing threads'])
+        number_processing_threads = int(Prediction_Parameters['Number of CPU processing threads'])
 
         model.eval()
         if number_processing_threads == 1:

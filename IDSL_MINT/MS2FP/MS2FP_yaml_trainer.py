@@ -71,7 +71,7 @@ def MS2FP_yaml_trainer(yaml_file):
         if count_fp != 1:
             raise RuntimeError("Please select `True` only for one Fingerprints method!")
 
-        number_processing_threads = int(yaml_MSP_pickling['Number processing threads'])
+        number_processing_threads = int(yaml_MSP_pickling['Number of CPU processing threads'])
 
         MS2FP_msp_pickler(pkl_deconvoluted_msp_directory,
                             msp_file_directory,
@@ -157,7 +157,7 @@ def MS2FP_yaml_trainer(yaml_file):
     max_number_ions_per_batch = int(Training_Parameters['Maximum number of ions per training step'])
     split_ratio = Training_Parameters['Split ratio between training and validation sets']
     random_state = int(Training_Parameters['Random state'])
-    number_processing_threads = int(Training_Parameters['Number processing threads'])
+    number_processing_threads = int(Training_Parameters['Number of CPU processing threads'])
 
     MS2FP_train(model,
                 device,
