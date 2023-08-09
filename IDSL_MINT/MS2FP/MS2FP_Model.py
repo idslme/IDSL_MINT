@@ -98,10 +98,10 @@ class MS2FP_Model(nn.Module):
                 
                 for s in range(beam_size):
                     new_score = scores[s] + beams["Scores"][b]
-                    Scores.append(new_score)
+                    Scores.append(new_score.to('cpu'))
                     Indices.append(indices[s])
 
-            indScores, ind = torch.stack(Scores.to('cpu')).topk(beam_size)
+            indScores, ind = torch.stack(Scores).topk(beam_size)
             index_FP_tokens = (ind % beam_size).tolist()
 
 
@@ -110,7 +110,7 @@ class MS2FP_Model(nn.Module):
                 new_FP_tokens.append(torch.cat((beams["FP_tokens"][index_FP_tokens[b]], Indices[b].view(-1, 1).to('cpu')), dim = 1).type(torch.int))
 
             beams["FP_tokens"] = new_FP_tokens
-            beams["Scores"] = indScores.to('cpu')
+            beams["Scores"] = indScores
 
         
         FP_tokens = beams["FP_tokens"][0]
