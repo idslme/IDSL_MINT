@@ -14,7 +14,7 @@ MINT_MS2FP_trainer:
     Noise removal threshold: 0.01
     Allowed spectral entropy: True
     Maximum number of available fingerprint bits: 200
-    Number processing threads: 35
+    Number of CPU processing threads: 35
     
     Fingerprints:
       ## Only one method can be True and other options must be set to False
@@ -66,4 +66,4 @@ MINT_MS2FP_trainer:
     Maximum number of ions per training step: 2000
     Split ratio between training and validation sets: [0.80, 0.20]
     Random state: 67
-    Number processing threads: 35
+    Number of CPU processing threads: 35

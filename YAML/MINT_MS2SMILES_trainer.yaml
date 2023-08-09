@@ -14,7 +14,7 @@ MINT_MS2SMILES_trainer:
     Noise removal threshold: 0.01
     Allowed spectral entropy: True
     Maximum length of SMILES characters: 200
-    Number processing threads: 35
+    Number of CPU processing threads: 35
     
 
   Model Parameters:
@@ -56,4 +56,4 @@ MINT_MS2SMILES_trainer:
     Maximum number of ions per training step: 2000
     Split ratio between training and validation sets: [0.80, 0.20]
     Random state: 67
-    Number processing threads: 35
+    Number of CPU processing threads: 35

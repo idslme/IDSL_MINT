@@ -43,4 +43,4 @@ MINT_FP2MS_predictor:
     Directory to store predictions: path/to/folder
     Device: None # cuda OR cpu. When None, it automatically finds the processing device.
     Beam size: 3
-    Number processing threads: 35
+    Number of CPU processing threads: 35
