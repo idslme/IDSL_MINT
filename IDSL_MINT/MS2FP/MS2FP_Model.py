@@ -114,7 +114,7 @@ class MS2FP_Model(nn.Module):
 
         
         FP_tokens = beams["FP_tokens"][0]
-        FP_tokens = (FP_tokens[~torch.isin(FP_tokens, torch.tensor([0, 1, 2]))].unique().detach().numpy() - 3).tolist()
+        FP_tokens = (FP_tokens[~torch.isin(FP_tokens, torch.tensor([0, 1, 2]))].detach().cpu().unique().numpy() - 3).tolist()
         output = [msp_block_name, "-".join([str(q) for q in FP_tokens])]
 
         return output

@@ -160,11 +160,11 @@ class MS2SMILES_Model(nn.Module):
             beams["seqSMILES_Tokens"] = new_SMILES_token
             beams["Scores"] = indScores
 
-        Scores = (torch.softmax(beams["Scores"], dim = -1).detach().numpy()*100).tolist()
+        Scores = (torch.softmax(beams["Scores"], dim = -1).detach().cpu().unique().numpy()*100).tolist()
 
         SMILES = []
         for smiles_tokens in beams["seqSMILES_Tokens"]:
-            SMILES.append(SMILER(smiles_tokens.squeeze(dim = 0).detach().numpy()))
+            SMILES.append(SMILER(smiles_tokens.squeeze(dim = 0).detach().cpu().unique().numpy()))
         
         
         return msp_block_name, Scores, SMILES

@@ -91,6 +91,6 @@ class FP2MS_Model(nn.Module):
 
         
         FP_tokens = beams["MZ_tokens"][0]
-        FP_tokens = (FP_tokens[~torch.isin(FP_tokens, torch.tensor([0, 1, 2]))].unique().numpy() - 3).tolist()
+        FP_tokens = (FP_tokens[~torch.isin(FP_tokens, torch.tensor([0, 1, 2]))].detach().cpu().unique().numpy() - 3).tolist()
 
         return FP_tokens
