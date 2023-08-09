@@ -105,7 +105,7 @@ def MS2SMILES_yaml_predictor(yaml_file):
         del deconvoluted_msp
         
         
-        MINT_logRecorder(f"\nDevice: {device}\n", logMINT = logMINT, allowedPrinting = True)
+        MINT_logRecorder(f"\nDevice: {device}", logMINT = logMINT, allowedPrinting = True)
         MINT_logRecorder("\nLoading model weights!\n", logMINT = logMINT, allowedPrinting = True)
         Model_Parameters = yaml_data['Model Parameters']
 

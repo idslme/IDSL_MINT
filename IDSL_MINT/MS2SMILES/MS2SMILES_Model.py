@@ -100,7 +100,7 @@ class MS2SMILES_Model(nn.Module):
         INT_vector = torch.tensor(INT_vector, dtype = torch.float32).unsqueeze(dim = 0).unsqueeze(dim = 2).to(device)
 
         seqSMILESpadded = torch.zeros(size = (1, (self.max_SMILES_sequence_length - 1))).to(device)  # 0 is the token number for padding
-        seqSMILES = torch.cat((torch.tensor([[1]]), seqSMILESpadded), dim = 1).to(device)
+        seqSMILES = torch.cat((torch.tensor([[1]], device = device), seqSMILESpadded), dim = 1)
         with torch.inference_mode():
             logits = self.forward(MZ_Tokens_vector, INT_vector, (seqSMILES).type(torch.int).to(device))
 
