@@ -26,6 +26,9 @@ MINT_MS2FP_trainer:
         radius: 2
         nBits: 2048
         useChirality: False
+        useBondTypes: True
+        useFeatures: False
+        includeRedundantEnvironments: False
 
 
   Model Parameters:

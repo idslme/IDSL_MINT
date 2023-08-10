@@ -62,10 +62,16 @@ def MS2FP_yaml_trainer(yaml_file):
             radius = MorganFingerprint_parameters['radius']
             nBits = MorganFingerprint_parameters['nBits']
             useChirality = MorganFingerprint_parameters['useChirality']
+            useBondTypes = MorganFingerprint_parameters['useBondTypes']
+            useFeatures = MorganFingerprint_parameters['useFeatures']
+            includeRedundantEnvironments = MorganFingerprint_parameters['includeRedundantEnvironments']
             if isinstance(useChirality, str):
                 useChirality = string_dict.get(useChirality.lower())
+                useBondTypes = string_dict.get(useBondTypes.lower())
+                useFeatures = string_dict.get(useFeatures.lower())
+                includeRedundantEnvironments = string_dict.get(includeRedundantEnvironments.lower())
 
-            fingerprint_parameters = ('MorganFingerprint', MAX_NUMBER_BITS, radius, nBits, useChirality)
+            fingerprint_parameters = ('MorganFingerprint', MAX_NUMBER_BITS, radius, nBits, useChirality, useBondTypes, useFeatures, includeRedundantEnvironments)
             count_fp += 1
 
         if count_fp != 1:

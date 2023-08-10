@@ -3,7 +3,8 @@ import numpy as np
 from typing import Tuple
 
 from rdkit.Chem import MolFromInchi, MolFromSmiles
-from rdkit.Chem.AllChem import GetMorganFingerprintAsBitVect, DataStructs
+from rdkit.Chem.AllChem import DataStructs
+from rdkit.Chem.rdMolDescriptors import GetMorganFingerprintAsBitVect, GetMACCSKeysFingerprint
 
 
 InChI_string_pattern = re.compile("^InChI", re.IGNORECASE)
@@ -18,7 +19,10 @@ RDLogger.DisableLog('rdApp.*')
 def GetRDKitMorganFingerprintTokens(chemical_identifier: str,
                                     radius: int,
                                     nBits: int,
-                                    useChirality: bool) -> np.ndarray:
+                                    useChirality: bool,
+                                    useBondTypes: bool,
+                                    useFeatures: bool,
+                                    includeRedundantEnvironments: bool) -> np.ndarray:
     
     try:
         chemical_identifier = re.sub(invalidCharacters, "", chemical_identifier)
@@ -29,7 +33,7 @@ def GetRDKitMorganFingerprintTokens(chemical_identifier: str,
         else:
             mol_desc = MolFromSmiles(chemical_identifier)
         
-        nBits = GetMorganFingerprintAsBitVect(mol = mol_desc, radius = radius, nBits = nBits, useChirality = useChirality)
+        nBits = GetMorganFingerprintAsBitVect(mol = mol_desc, radius = radius, nBits = nBits, useChirality = useChirality, useBondTypes = useBondTypes, useFeatures = useFeatures, includeRedundantEnvironments = includeRedundantEnvironments)
         arr = np.zeros((1,))
         DataStructs.ConvertToNumpyArray(nBits, arr)
 
@@ -46,19 +50,22 @@ def GetRDKitMorganFingerprintTokens(chemical_identifier: str,
 def RDKitMorganFingerprintExtractor(ChemicalIdentifiers: Tuple[str, str],
                                     radius: int,
                                     nBits: int,
-                                    useChirality: bool) -> Tuple:
+                                    useChirality: bool,
+                                    useBondTypes: bool,
+                                    useFeatures: bool,
+                                    includeRedundantEnvironments: bool) -> Tuple:
     
     RDKitnBitsTokens = None
     
     if ChemicalIdentifiers is not None:
         SMILES = ChemicalIdentifiers[0]
         if SMILES:
-            RDKitnBitsTokens = GetRDKitMorganFingerprintTokens(SMILES, radius, nBits, useChirality)
-                    
+            RDKitnBitsTokens = GetRDKitMorganFingerprintTokens(SMILES, radius, nBits, useChirality, useBondTypes, useFeatures, includeRedundantEnvironments)
+
         if RDKitnBitsTokens is None:
             InChI = ChemicalIdentifiers[1]
             if InChI:
-                RDKitnBitsTokens = GetRDKitMorganFingerprintTokens(InChI, radius, nBits, useChirality)
+                RDKitnBitsTokens = GetRDKitMorganFingerprintTokens(InChI, radius, nBits, useChirality, useBondTypes, useFeatures, includeRedundantEnvironments)
 
     return RDKitnBitsTokens
 
@@ -77,7 +84,7 @@ def GetRDKitMACCSkeysFingerprintTokens(chemical_identifier) -> np.ndarray:
         else:
             mol_desc = MolFromSmiles(chemical_identifier)
         
-        nBits = MACCSkeys.GenMACCSKeys(mol = mol_desc)
+        nBits = GetMACCSKeysFingerprint(mol = mol_desc)
         arr = np.zeros((1,))
         DataStructs.ConvertToNumpyArray(nBits, arr)
 
@@ -128,7 +135,10 @@ def MINT_fingerprint_descriptor(chemical_identifiers, fingerprint_parameters):
             radius = fingerprint_parameters[2]
             nBits = fingerprint_parameters[3]
             useChirality = fingerprint_parameters[4]
-            nBitsToken = RDKitMorganFingerprintExtractor(ChemicalIdentifiers = ChemicalIdentifiers, radius = radius, nBits = nBits, useChirality = useChirality)
+            useBondTypes = fingerprint_parameters[5]
+            useFeatures = fingerprint_parameters[6]
+            includeRedundantEnvironments = fingerprint_parameters[7]
+            nBitsToken = RDKitMorganFingerprintExtractor(ChemicalIdentifiers = ChemicalIdentifiers, radius = radius, nBits = nBits, useChirality = useChirality, useBondTypes = useBondTypes, useFeatures = useFeatures, includeRedundantEnvironments = includeRedundantEnvironments)
 
         else:
             nBitsToken = [int(s) for s in chemical_identifiers[2].split("-")]

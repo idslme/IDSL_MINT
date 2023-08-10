@@ -23,9 +23,12 @@ MINT_FP2MS_trainer:
       MACCS Keys: False
       MorganFingerprint: True
       MorganFingerprint parameters:
-        radius: 8
-        nBits: 8192
+        radius: 2
+        nBits: 2048
         useChirality: False
+        useBondTypes: True
+        useFeatures: False
+        includeRedundantEnvironments: False
     
     ## To restrict number of m/z tokens
     Number of top frequent sm/z: 10000
