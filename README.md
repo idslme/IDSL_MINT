@@ -5,9 +5,9 @@
 [![Python](https://img.shields.io/pypi/pyversions/d3blocks)](https://img.shields.io/pypi/pyversions/d3blocks)
 [![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://github.com/pytorch)
 
-[![Open In Colab](https://colab.research.google.com/drive/16A-Hw6S_04nxlopp7yefZkVB5Aakcodu#scrollTo=E4o1pG-tZNDR)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/16A-Hw6S_04nxlopp7yefZkVB5Aakcodu#scrollTo=E4o1pG-tZNDR)
 
-[![Open In Colab](https://colab.research.google.com/drive/1UUZwCpI4b0adHZ3y4JTRDPlin-KAWIvQ#scrollTo=RbAS-ZFPVOqM)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1UUZwCpI4b0adHZ3y4JTRDPlin-KAWIvQ#scrollTo=RbAS-ZFPVOqM)
 <!-- badges: end -->
 
 **IDSL_MINT: Mass spectra INTerpretation** by the [**Integrated Data Science Laboratory for Metabolomics and Exposomics (IDSL.ME)**](https://www.idsl.me) is a transformative mass spectrometry data processing framework. This innovative approach for mass spectrometry data processing has been constructed upon the transformer models delineated in the seminal paper, [*'Attention is all you need'*](https://arxiv.org/abs/1706.03762). **IDSL_MINT** has been meticulously engineered to predict molecular fingerprints and structures from MS/MS spectra in addition to forecasting MS/MS spectra from canonical SMILES. A key distinguishing feature of **IDSL_MINT** is its compatibility with any reference MS/MS data in ***.msp*** format to tailor **IDSL_MINT** models for various applications.
