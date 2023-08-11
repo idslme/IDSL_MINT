@@ -176,7 +176,7 @@ def msp_block_deconvoluter(msp_block_object) -> Tuple:
                 else:
                     InChI = None
 
-                ## Finger print bits
+                ## Fingerprint bits
                 mol_finger_print = [s for s in msp_block if Fingerprint_pattern.search(s)]
                 if mol_finger_print:
                     mol_finger_print = row_entry_selector(mol_finger_print)

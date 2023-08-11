@@ -53,7 +53,7 @@ def MS2FP_msp_pickler(pkl_deconvoluted_msp_directory: str = "",
     ## logging the parameters
     logMINT = f"{pkl_deconvoluted_msp_directory}/logMINT_training_set_pkl.txt"
     MINT_logRecorder("=".join(["" for _ in range(100)]), logMINT = logMINT, allowedPrinting = True)
-    MINT_logRecorder(f"\nInitiated separating mass spectra and extracting molecular finger prints from the msp file(s)!", logMINT = logMINT, allowedPrinting = True)
+    MINT_logRecorder(f"\nInitiated separating mass spectra and extracting molecular fingerprint descriptors from the msp file(s)!", logMINT = logMINT, allowedPrinting = True)
     MINT_logRecorder(f"Variables used to generate training_set_pkl are: \n", logMINT = logMINT, allowedPrinting = False)
     MINT_logRecorder(f"msp_file_directory: {msp_file_directory}", logMINT = logMINT, allowedPrinting = False)
     MINT_logRecorder(f"pkl_deconvoluted_msp_directory: {pkl_deconvoluted_msp_directory}", logMINT = logMINT, allowedPrinting = False)

@@ -30,7 +30,7 @@ def getFingerPrintTokens2MS(deconvoluted_msp_block):
             
             msp_block_name = deconvoluted_msp_block[1]
             
-            MINT_logRecorder(f"WARNING!!! Can't process molecular finger print tokens for MSP block ID `{i}` related to `{msp_block_name}`!", logMINT = logMINT, allowedPrinting = False, warning_message = True)
+            MINT_logRecorder(f"WARNING!!! Can't process molecular fingerprint descriptor tokens for MSP block ID `{i}` related to `{msp_block_name}`!", logMINT = logMINT, allowedPrinting = False, warning_message = True)
 
         else:
             
@@ -38,7 +38,7 @@ def getFingerPrintTokens2MS(deconvoluted_msp_block):
             tokenized_MZ += 3
             tokenized_MZ = np.concatenate((np.array([1]), tokenized_MZ, np.array([2])), axis = 0)
 
-            ## Finger print tokens
+            ## Fingerprint tokens
             max_sequence_length = fingerprint_parameters[1]
             token_count = len(nBitsToken)
 
