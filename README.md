@@ -4,10 +4,6 @@
 [![Powered by RDKit](https://img.shields.io/badge/Powered%20by-RDKit-3838ff.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAFVBMVEXc3NwUFP8UPP9kZP+MjP+0tP////9ZXZotAAAAAXRSTlMAQObYZgAAAAFiS0dEBmFmuH0AAAAHdElNRQfmAwsPGi+MyC9RAAAAQElEQVQI12NgQABGQUEBMENISUkRLKBsbGwEEhIyBgJFsICLC0iIUdnExcUZwnANQWfApKCK4doRBsKtQFgKAQC5Ww1JEHSEkAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wMy0xMVQxNToyNjo0NyswMDowMDzr2J4AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDMtMTFUMTU6MjY6NDcrMDA6MDBNtmAiAAAAAElFTkSuQmCC)](https://www.rdkit.org/)
 [![Python](https://img.shields.io/pypi/pyversions/d3blocks)](https://img.shields.io/pypi/pyversions/d3blocks)
 [![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://github.com/pytorch)
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/16A-Hw6S_04nxlopp7yefZkVB5Aakcodu#scrollTo=E4o1pG-tZNDR)
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1UUZwCpI4b0adHZ3y4JTRDPlin-KAWIvQ#scrollTo=RbAS-ZFPVOqM)
 <!-- badges: end -->
 
 **IDSL_MINT: Mass spectra INTerpretation** by the [**Integrated Data Science Laboratory for Metabolomics and Exposomics (IDSL.ME)**](https://www.idsl.me) is a transformative mass spectrometry data processing framework. This innovative approach for mass spectrometry data processing has been constructed upon the transformer models delineated in the seminal paper, [*'Attention is all you need'*](https://arxiv.org/abs/1706.03762). **IDSL_MINT** has been meticulously engineered to predict molecular fingerprints and structures from MS/MS spectra in addition to forecasting MS/MS spectra from canonical SMILES. A key distinguishing feature of **IDSL_MINT** is its compatibility with any reference MS/MS data in ***.msp*** format to tailor **IDSL_MINT** models for various applications.
@@ -56,6 +52,11 @@ The **IDSL_MINT** framework encapsulates three transformative approaches to deep
 
 
 ## IDSL_MINT: Translating MS/MS Spectra into Molecular Fingerprints
+
+<!-- badges: start -->
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1UUZwCpI4b0adHZ3y4JTRDPlin-KAWIvQ#scrollTo=RbAS-ZFPVOqM)
+<!-- badges: end -->
+
 **IDSL_MINT** includes a method to translate MS/MS spectra into molecular fingerprints. This method offers the option to calculate fingerprints using the [Extended-connectivity fingerprints (ECFPs)](https://doi.org/10.1021/ci100050t) or [MACCS Keys](https://doi.org/10.1021/ci200081k) RDKit methods from InChI and SMILES row entries. Another option to obtain molecular fingerprints is to parse the MSP files for the user-provided fingerprints. The following is an example of an Aspirin MSP block with custom fingerprint bits.
 
 
@@ -94,6 +95,10 @@ To train an **IDSL_MINT** model with molecular fingerprints, download and fill a
 A [colab notebook](https://colab.research.google.com/drive/16A-Hw6S_04nxlopp7yefZkVB5Aakcodu#scrollTo=E4o1pG-tZNDR) was presented to demonstrate the performance of **IDSL_MINT** in training and predicting molecular fingerprint descriptors using MS/MS data.
 
 ## IDSL_MINT: Translating MS/MS Spectra into Canonical SMILES
+
+<!-- badges: start -->
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/16A-Hw6S_04nxlopp7yefZkVB5Aakcodu#scrollTo=E4o1pG-tZNDR)
+<!-- badges: end -->
 
 In this approach, InChI and SMILES row entries in the MSP blocks are converted into canonical SMILES using [RDKit](https://www.rdkit.org). Next, standard canonical SMILES are tokenized using a method similar to [RXNFP](https://rxn4chemistry.github.io/rxnfp). As long as InChI and SMILES row entries present in the MSP blocks are available, this approach may be used to train an **IDSL_MINT** model.
 
