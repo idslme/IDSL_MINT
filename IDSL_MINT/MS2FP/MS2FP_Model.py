@@ -112,9 +112,13 @@ class MS2FP_Model(nn.Module):
             beams["FP_tokens"] = new_FP_tokens
             beams["Scores"] = indScores
 
-        
+
         FP_tokens = beams["FP_tokens"][0]
         FP_tokens = (FP_tokens[~torch.isin(FP_tokens, torch.tensor([0, 1, 2]))].detach().cpu().unique().numpy() - 3).tolist()
-        output = [msp_block_name, "-".join([str(q) for q in FP_tokens])]
 
+        if len(FP_tokens) > 0:
+            output = [msp_block_name, "-".join([str(q) for q in FP_tokens])]
+        else:
+            output = [msp_block_name, ""]
+        
         return output

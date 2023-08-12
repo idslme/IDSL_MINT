@@ -133,8 +133,8 @@ class MS2SMILES_Model(nn.Module):
 
                     probs = torch.log(torch.softmax(logits[0, (decoding_depth - 1), :], dim = 0)).to('cpu')
                     scores, indices = probs.topk(beam_size, dim = 0)
-                    
-                    
+
+
                     for s in range(beam_size):
                         new_score = scores[s] + beams["Scores"][b]
                         Scores.append(new_score)
