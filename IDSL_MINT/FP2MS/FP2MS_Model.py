@@ -69,13 +69,13 @@ class FP2MS_Model(nn.Module):
                 with torch.inference_mode():
                     logits = self.forward(FP_Tokens_vector, beams["MZ_tokens"][b].to(device))
 
-                probs = torch.log(torch.softmax(logits[0, i, :], dim = 0))
+                probs = torch.log(torch.softmax(logits[0, i, :], dim = 0)).to('cpu')
                 scores, indices = probs.topk(beam_size, dim = 0)
                 
                 
                 for s in range(beam_size):
                     new_score = scores[s] + beams["Scores"][b]
-                    Scores.append(new_score.to('cpu'))
+                    Scores.append(new_score)
                     Indices.append(indices[s])
 
             indScores, ind = torch.stack(Scores).topk(beam_size)
@@ -84,7 +84,7 @@ class FP2MS_Model(nn.Module):
 
             new_FP_tokens = []
             for b in range(beam_size):
-                new_FP_tokens.append(torch.cat((beams["MZ_tokens"][index_FP_tokens[b]], Indices[b].view(-1, 1).to('cpu')), dim = 1).type(torch.int))
+                new_FP_tokens.append(torch.cat((beams["MZ_tokens"][index_FP_tokens[b]], Indices[b].view(-1, 1)), dim = 1).type(torch.int))
 
             beams["MZ_tokens"] = new_FP_tokens
             beams["Scores"] = indScores

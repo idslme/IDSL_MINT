@@ -131,18 +131,18 @@ class MS2SMILES_Model(nn.Module):
                     with torch.inference_mode():
                         logits = self.forward(MZ_Tokens_vector, INT_vector, seqSMILES.type(torch.int).to(device))
 
-                    probs = torch.log(torch.softmax(logits[0, (decoding_depth - 1), :], dim = 0))
+                    probs = torch.log(torch.softmax(logits[0, (decoding_depth - 1), :], dim = 0)).to('cpu')
                     scores, indices = probs.topk(beam_size, dim = 0)
                     
                     
                     for s in range(beam_size):
                         new_score = scores[s] + beams["Scores"][b]
-                        Scores.append(new_score.to('cpu'))
-                        Indices.append(indices[s].to('cpu'))
+                        Scores.append(new_score)
+                        Indices.append(indices[s])
 
                 else:
                     for s in range(beam_size):
-                        Scores.append(beams["Scores"][b].to('cpu'))
+                        Scores.append(beams["Scores"][b])
                         Indices.append(torch.tensor(2, device = 'cpu'))
 
             indScores, ind = torch.stack(Scores).topk(beam_size)
@@ -153,7 +153,7 @@ class MS2SMILES_Model(nn.Module):
             for b in range(beam_size):
 
                 if beams["seqSMILES_Tokens"][b][0, -1].item() != 2:
-                    new_SMILES_token.append(torch.cat((beams["seqSMILES_Tokens"][index_SMILES_token[b]], Indices[b].view(-1, 1).to('cpu')), dim = 1).type(torch.int))
+                    new_SMILES_token.append(torch.cat((beams["seqSMILES_Tokens"][index_SMILES_token[b]], Indices[b].view(-1, 1)), dim = 1).type(torch.int))
                 else:
                     new_SMILES_token.append(beams["seqSMILES_Tokens"][index_SMILES_token[b]])
 
