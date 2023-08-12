@@ -143,7 +143,7 @@ class MS2SMILES_Model(nn.Module):
                 else:
                     for s in range(beam_size):
                         Scores.append(beams["Scores"][b].to('cpu'))
-                        Indices.append(torch.tensor(2, device = device))
+                        Indices.append(torch.tensor(2, device = 'cpu'))
 
             indScores, ind = torch.stack(Scores).topk(beam_size)
             index_SMILES_token = (ind % beam_size).tolist()
