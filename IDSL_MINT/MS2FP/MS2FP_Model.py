@@ -99,7 +99,7 @@ class MS2FP_Model(nn.Module):
                 for s in range(beam_size):
                     new_score = scores[s] + beams["Scores"][b]
                     Scores.append(new_score.to('cpu'))
-                    Indices.append(indices[s])
+                    Indices.append(indices[s].to('cpu'))
 
             indScores, ind = torch.stack(Scores).topk(beam_size)
             index_FP_tokens = (ind % beam_size).tolist()
