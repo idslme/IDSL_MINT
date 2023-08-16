@@ -8,7 +8,26 @@
 
 **IDSL_MINT: Mass spectra INTerpretation** by the [**Integrated Data Science Laboratory for Metabolomics and Exposomics (IDSL.ME)**](https://www.idsl.me) is a transformative mass spectrometry data processing framework. This innovative approach for mass spectrometry data processing has been constructed upon the transformer models delineated in the seminal paper, [*'Attention is all you need'*](https://arxiv.org/abs/1706.03762). **IDSL_MINT** has been meticulously engineered to predict molecular fingerprints and structures from MS/MS spectra in addition to forecasting MS/MS spectra from canonical SMILES. A key distinguishing feature of **IDSL_MINT** is its compatibility with any reference MS/MS data in ***.msp*** format to tailor **IDSL_MINT** models for various applications.
 
-# Installation
+## Table of Contents
+
+- [Features of IDSL_MINT](https://github.com/idslme/idsl_mint#features-of-idsl_mint)
+- [Installation](https://github.com/idslme/idsl_mint#installation)
+- [Workflow](https://github.com/idslme/idsl_mint#workflow)
+- [IDSL_MINT: Translating MS/MS Spectra into Molecular Fingerprints](https://github.com/idslme/idsl_mint#idsl_mint-translating-msms-spectra-into-molecular-fingerprints)
+- [IDSL_MINT: Translating MS/MS Spectra into Canonical SMILES](https://github.com/idslme/idsl_mint#idsl_mint-translating-msms-spectra-into-canonical-smiles)
+- [IDSL_MINT: Transforming Fingerprints into MS/MS Fragments](https://github.com/idslme/idsl_mint#idsl_mint-transforming-fingerprints-into-msms-fragments)
+- [Citation](https://github.com/idslme/idsl_mint#citation)
+
+## Features of IDSL_MINT
+
+1) Parameter selection for training and prediction through user-friendly and well-documented [**YAML** files](https://github.com/idslme/IDSL_MINT/tree/main/YAML)
+2) Compatibility with *.msp* file formats.
+3) Compatibility with various fingerprint descriptor methods.
+4) Supports beam search inferencing.
+5) Utilizes the power of the transformer model architecture.
+6) Device-agnostic processing.
+
+## Installation
 
 1. Installation of Prerequisites:
     
@@ -36,12 +55,12 @@
 	`export PATH="root/.local/bin:$PATH"` --> root directory should be your system root directory.
 
 
-# Workflow
+## Workflow
 The **IDSL_MINT** framework encapsulates three transformative approaches to deeply interpret mass spectrometry data. Each of these methodologies can be effectively managed using designated model configuration `yaml` files. In the training step, weights of **IDSL_MINT** models are stored and updated in a designated directory on the decreasing trajectory of the training loss value to ensure optimal performance and accuracy. The [`yaml`](https://github.com/idslme/IDSL_MINT/tree/main/YAML) files are easy to update and model configuration is significantly simplified and commented. After configuring the model in the designated `yaml` file, run the below bash command to perform calculations. The **IDSL_MINT** package can automatically detect types of `yaml` file to run training or inference operations.
 
     MINT_workflow --yaml /path/to/yaml/file
 
-### Important tips:
+#### Important tips:
 - **IDSL_MINT** can extract information from `comment: ` and `comments: ` entries in ***.msp*** files which enables this platform to process MoNA, GNPS, and other public library with any pre-treatment requirements.
 
 - **IDSL_MINT** identifies chemical structures through `SMILES: ` or `InChI: ` labels without case sensitivity.
@@ -112,5 +131,5 @@ This method is designed to translate fingerprints into MS/MS fragments using a t
 
 To train an **IDSL_MINT** model to predict MS/MS spectra from molecular structures, download and fill a [MINT_FP2MS_trainer.yaml](https://github.com/idslme/IDSL_MINT/tree/main/YAML/MINT_FP2MS_trainer.yaml) file. Likewise, for model prediction, use [MINT_FP2MS_predictor.yaml](https://github.com/idslme/IDSL_MINT/tree/main/YAML/MINT_FP2MS_predictor.yaml) file.
 
-# Citation
+## Citation
 Pending ...
