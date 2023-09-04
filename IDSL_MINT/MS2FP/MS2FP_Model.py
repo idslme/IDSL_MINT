@@ -36,10 +36,10 @@ class MS2FP_Model(nn.Module):
 
         device = z.device
 
-        idx2i = torch.arange(0, self.D_model, 2).to(device)
-        idx1i = torch.arange(1, self.D_model, 2).to(device)
+        idx2i = torch.arange(start = 0, end = self.D_model, step = 2, device = device, requires_grad = True)
+        idx1i = torch.arange(start = 1, end = self.D_model, step = 2, device = device, requires_grad = True)
 
-        zPosEnc = torch.zeros_like(z).to(device)
+        zPosEnc = torch.zeros_like(input = z, device = device, requires_grad = True)
 
         zPosEnc[:, :, idx2i] = torch.sin(idx2i*INT/(10000**(2*idx2i/self.D_model)))
         zPosEnc[:, :, idx1i] = torch.cos(idx1i*INT/(10000**(2*idx1i/self.D_model)))

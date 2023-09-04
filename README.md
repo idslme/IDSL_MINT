@@ -6,7 +6,7 @@
 [![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://github.com/pytorch)
 <!-- badges: end -->
 
-**IDSL_MINT: Mass spectra INTerpretation** by the [**Integrated Data Science Laboratory for Metabolomics and Exposomics (IDSL.ME)**](https://www.idsl.me) is a transformative mass spectrometry data processing framework. This innovative approach for mass spectrometry data processing has been constructed upon the transformer models delineated in the seminal paper, [*'Attention is all you need'*](https://arxiv.org/abs/1706.03762). **IDSL_MINT** has been meticulously engineered to predict molecular fingerprints and structures from MS/MS spectra in addition to forecasting MS/MS spectra from canonical SMILES. A key distinguishing feature of **IDSL_MINT** is its compatibility with any reference MS/MS data in ***.msp*** format to tailor **IDSL_MINT** models for various applications.
+**IDSL_MINT: Mass spectra INTerpretation** by the [**Integrated Data Science Laboratory for Metabolomics and Exposomics (IDSL.ME)**](https://www.idsl.me) is a transformative mass spectrometry data processing framework. This innovative approach for mass spectrometry data processing has been constructed upon the transformer models delineated in the seminal paper, [*'Attention is all you need'*](https://arxiv.org/abs/1706.03762). **IDSL_MINT** has been meticulously engineered to predict molecular fingerprint descriptors and structures from MS/MS spectra in addition to forecasting MS/MS spectra from canonical SMILES. A key distinguishing feature of **IDSL_MINT** is its compatibility with any reference MS/MS data in ***.msp*** format to tailor **IDSL_MINT** models for various applications.
 
 ## Table of Contents
 
@@ -76,7 +76,7 @@ The **IDSL_MINT** framework encapsulates three transformative approaches to deep
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/16A-Hw6S_04nxlopp7yefZkVB5Aakcodu#scrollTo=E4o1pG-tZNDR)
 <!-- badges: end -->
 
-**IDSL_MINT** includes a method to translate MS/MS spectra into molecular fingerprints. This method offers the option to calculate fingerprints using the [Extended-connectivity fingerprints (ECFPs)](https://doi.org/10.1021/ci100050t) or [MACCS Keys](https://doi.org/10.1021/ci200081k) RDKit methods from InChI and SMILES row entries. Another option to obtain molecular fingerprints is to parse the MSP files for the user-provided fingerprints. The following is an example of an Aspirin MSP block with custom fingerprint bits.
+**IDSL_MINT** includes a method to translate MS/MS spectra into molecular fingerprint descriptors. This method offers the option to calculate fingerprints using the [Extended-connectivity fingerprints (ECFPs)](https://doi.org/10.1021/ci100050t) or [MACCS Keys](https://doi.org/10.1021/ci200081k) RDKit methods from InChI and SMILES row entries. Another option to obtain molecular fingerprints is to parse the MSP files for the user-provided fingerprints. The following is an example of an Aspirin MSP block with custom fingerprint bits.
 
 
     Name: Aspirin
@@ -109,7 +109,7 @@ The **IDSL_MINT** framework encapsulates three transformative approaches to deep
 
 `Fingerprint` row entries may be in any line in MSP blocks between `Name` and `Num Peaks` rows, and fingerprint bits must be dash-separated. This example represented Avalon fingerprint bits with `nBits = 4096` for Aspirin MS/MS spectra.
 
-To train an **IDSL_MINT** model with molecular fingerprints, download and fill a [MINT_MS2FP_trainer.yaml](https://github.com/idslme/IDSL_MINT/tree/main/YAML/MINT_MS2FP_trainer.yaml) file. Similarly, for model prediction, use [MINT_MS2FP_predictor.yaml](https://github.com/idslme/IDSL_MINT/tree/main/YAML/MINT_MS2FP_predictor.yaml) file.
+To train an **IDSL_MINT** model with molecular fingerprint descriptors, download and fill a [MINT_MS2FP_trainer.yaml](https://github.com/idslme/IDSL_MINT/tree/main/YAML/MINT_MS2FP_trainer.yaml) file. Similarly, for model prediction, use [MINT_MS2FP_predictor.yaml](https://github.com/idslme/IDSL_MINT/tree/main/YAML/MINT_MS2FP_predictor.yaml) file.
 
 A [colab notebook](https://colab.research.google.com/drive/16A-Hw6S_04nxlopp7yefZkVB5Aakcodu#scrollTo=E4o1pG-tZNDR) was presented to demonstrate the performance of **IDSL_MINT** in training and predicting molecular fingerprint descriptors using MS/MS data.
 
