@@ -8,6 +8,9 @@
 
 **IDSL_MINT: Mass spectra INTerpretation** by the [**Integrated Data Science Laboratory for Metabolomics and Exposomics (IDSL.ME)**](https://www.idsl.me) is a transformative mass spectrometry data processing framework. This innovative approach for mass spectrometry data processing has been constructed upon the transformer models delineated in the seminal paper, [*'Attention is all you need'*](https://arxiv.org/abs/1706.03762). **IDSL_MINT** has been meticulously engineered to predict molecular fingerprint descriptors and structures from MS/MS spectra in addition to forecasting MS/MS spectra from canonical SMILES. A key distinguishing feature of **IDSL_MINT** is its compatibility with any reference MS/MS data in ***.msp*** format to tailor **IDSL_MINT** models for various applications.
 
+<img src='MINT_educational_files/Figures/IDSL_MINT-TOC_Art.PNG' align="center" width="750" />
+
+
 ## Table of Contents
 
 - [Features of IDSL_MINT](https://github.com/idslme/idsl_mint#features-of-idsl_mint)
@@ -132,4 +135,5 @@ This method is designed to translate fingerprints into MS/MS fragments using a t
 To train an **IDSL_MINT** model to predict MS/MS spectra from molecular structures, download and fill a [MINT_FP2MS_trainer.yaml](https://github.com/idslme/IDSL_MINT/tree/main/YAML/MINT_FP2MS_trainer.yaml) file. Likewise, for model prediction, use [MINT_FP2MS_predictor.yaml](https://github.com/idslme/IDSL_MINT/tree/main/YAML/MINT_FP2MS_predictor.yaml) file.
 
 ## Citation
-Pending ...
+
+[1] Fakouri Baygi, S., Barupal, D.K. [IDSL_MINT: a deep learning framework to predict molecular fingerprints from mass spectra](https://doi.org/10.1186/s13321-024-00804-5). *Journal of Cheminformatics*, **2024**, *16(8)*.
